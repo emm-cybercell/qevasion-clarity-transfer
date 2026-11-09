@@ -1,0 +1,42 @@
+[
+  {
+    "type": "长而空泛",
+    "gold": "Clear Reply",
+    "pred": "Ambivalent",
+    "question": "expectations for the families of the Illinois National Guardsmen who have left for Iraq",
+    "answer_head": "They expect that their loved one will be participating in a noble and important cause. If I didn't think it was important, I wouldn't have put out the orders to have people go there. And if I didn't think we could win, I wouldn't be there. That's what they can expect. They can expect tough work, tough sledding, and they can expect a grateful Commander in Chief and a grateful nation for their sacrifices.In terms of tr",
+    "answer_len": 1309
+  },
+  {
+    "type": "部分/半回答→误判为明确回答",
+    "gold": "Ambivalent",
+    "pred": "Clear Reply",
+    "question": "Updating the figure of Iraqi deaths",
+    "answer_head": "No, I don't consider it a credible report; neither does General Casey and neither do Iraqi officials. I do know that a lot of innocent people have died, and that troubles me, and it grieves me. And I applaud the Iraqis for their courage in the face of violence. I am amazed that this is a society which so wants to be free that they're willing to—that there's a level of violence that they tolerate. And it's now time fo",
+    "answer_len": 140
+  },
+  {
+    "type": "隐式回答边界模糊",
+    "gold": "Ambivalent",
+    "pred": "Clear Reply",
+    "question": "Do you see any contradictory evidence in the culture?",
+    "answer_head": "No, I said—Mike, thanks. I was just speculating that the culture might be changing, and I was talking about when you're involved with making decisions of historic nature, you won't be around to see the effects of your decisions. And I said that when I work the ropelines, a lot of people come and say, Mr. President, I'm praying for you—a lot. As a matter of fact, it seems like a lot more now than when I was working ro",
+    "answer_len": 335
+  },
+  {
+    "type": "明确拒答被误判",
+    "gold": "Clear Non-Reply",
+    "pred": "Ambivalent",
+    "question": "Mr. President, if the EU does not receive a definitive answer from Iran on the incentives package by next week, do you foresee the G-8 summit as being a springboard to bring that issue to the U.N. Security Council?",
+    "answer_head": "I said I wasn't going to answer a hypothetical; now you're trying to get me to answer a hypothetical. The G-8 will be an opportunity for those of us involved with this issue to make it clear to the Iranians that they—we're firm in our resolve for them not to have a nuclear weapon.I talked to President Putin about ; I also talked to him about Iran. I believe he understands the dangers of the Iranians having a nuclear ",
+    "answer_len": 317
+  },
+  {
+    "type": "明确回答被误判为回避",
+    "gold": "Clear Reply",
+    "pred": "Ambivalent",
+    "question": "Shape of the multinational force",
+    "answer_head": "In terms of the troops, that's what the meeting Monday is going to be about. And this is one of these issues that requires international consensus. People will put forth ideas, and we'll participate, in terms of trying to help develop a consensus about what the force ought to look like.In a general sense, though, the force needs to serve as a complement to a Lebanese force. See, that's the whole purpose of the force,",
+    "answer_len": 193
+  }
+]

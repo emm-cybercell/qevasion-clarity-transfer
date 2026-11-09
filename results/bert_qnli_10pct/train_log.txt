@@ -1,0 +1,4 @@
+[bert_qnli_10pct] train=2000 test=3000 max_len=256 epochs=3 bs=32 lr=2e-05 device=cuda
+epoch 1/3 step 50/63 loss 0.6945 elapsed 19s
+epoch 2/3 step 50/63 loss 0.6228 elapsed 42s
+epoch 3/3 step 50/63 loss 0.5095 elapsed 65s

@@ -1,0 +1,32 @@
+{
+  "train_size": 3448,
+  "test_size": 308,
+  "train_coarse": {
+    "Ambivalent": 2040,
+    "Clear Reply": 1052,
+    "Clear Non-Reply": 356
+  },
+  "test_coarse": {
+    "Ambivalent": 206,
+    "Clear Reply": 79,
+    "Clear Non-Reply": 23
+  },
+  "train_fine": {
+    "Explicit": 1052,
+    "Dodging": 706,
+    "Implicit": 488,
+    "General": 386,
+    "Deflection": 381,
+    "Declining to answer": 145,
+    "Claims ignorance": 119,
+    "Clarification": 92,
+    "Partial/half-answer": 79
+  },
+  "question_words_mean": 14.462006960556845,
+  "question_words_median": 12.0,
+  "answer_words_mean": 293.57221577726216,
+  "answer_words_median": 207.0,
+  "answer_words_p95": 888.2999999999993,
+  "answer_words_max": 2117,
+  "class_ratio_major_to_minor": 5.730337078651686
+}

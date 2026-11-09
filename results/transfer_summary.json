@@ -1,0 +1,25 @@
+{
+  "zero_shot_bert": {
+    "accuracy": 0.491,
+    "macro_f1": 0.3293
+  },
+  "bert_qnli_10pct": {
+    "accuracy": 0.7553,
+    "macro_f1": 0.7552,
+    "train_size": 2000
+  },
+  "bert_qnli_30pct": {
+    "accuracy": 0.819,
+    "macro_f1": 0.819,
+    "train_size": 6000
+  },
+  "bert_qnli_100pct": {
+    "accuracy": 0.855,
+    "macro_f1": 0.8549,
+    "train_size": 20000
+  },
+  "tfidf_lr_qnli": {
+    "accuracy": 0.574,
+    "macro_f1": 0.5721
+  }
+}

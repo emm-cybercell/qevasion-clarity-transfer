@@ -1,0 +1,13 @@
+[bert_qev_fine] train=3103 test=345 max_len=384 epochs=4 bs=16 lr=2e-05 device=cuda
+epoch 1/4 step 50/194 loss 2.0606 elapsed 16s
+epoch 1/4 step 100/194 loss 1.9852 elapsed 32s
+epoch 1/4 step 150/194 loss 1.9443 elapsed 47s
+epoch 2/4 step 50/194 loss 1.8158 elapsed 76s
+epoch 2/4 step 100/194 loss 1.7627 elapsed 91s
+epoch 2/4 step 150/194 loss 1.7569 elapsed 107s
+epoch 3/4 step 50/194 loss 1.5585 elapsed 135s
+epoch 3/4 step 100/194 loss 1.5638 elapsed 151s
+epoch 3/4 step 150/194 loss 1.5688 elapsed 166s
+epoch 4/4 step 50/194 loss 1.4383 elapsed 196s
+epoch 4/4 step 100/194 loss 1.4574 elapsed 211s
+epoch 4/4 step 150/194 loss 1.4377 elapsed 227s

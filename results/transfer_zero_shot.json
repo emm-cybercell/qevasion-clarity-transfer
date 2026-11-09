@@ -1,0 +1,15 @@
+{
+  "accuracy": 0.491,
+  "macro_f1": 0.3293,
+  "confusion_matrix": [
+    [
+      1473,
+      0
+    ],
+    [
+      1527,
+      0
+    ]
+  ],
+  "note": "zero-shot: qev bert + coarse->entailment projection"
+}

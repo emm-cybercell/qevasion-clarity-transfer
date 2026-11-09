@@ -1,0 +1,12 @@
+# data & model artifacts (re-downloadable / reproducible)
+data/*.zip
+data/QNLI/
+arrow_tmp/
+results/*/model/
+results/*.out
+results/bert_*.out
+__pycache__/
+*.pyc
+.DS_Store
+converted/
+preview/

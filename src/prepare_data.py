@@ -1,0 +1,110 @@
+# -*- coding: utf-8 -*-
+"""Unified field adapter for QEvasion (source) and QNLI (transfer) datasets.
+
+Every dataset is normalized to the same record schema:
+    {"text_a": str, "text_b": str, "label": int, "label_name": str, "task": str}
+
+- QEvasion : text_a = sub-question, text_b = interview_answer
+             coarse labels (clarity_label, 3 classes) and fine labels
+             (evasion_label, 9 classes) are kept in parallel.
+- QNLI     : text_a = question, text_b = sentence, binary entailment label.
+"""
+import os
+import json
+import urllib.request
+from pathlib import Path
+
+import pandas as pd
+
+SEED = 42
+HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+RAW = os.path.join(HERE, "data")
+OUT = os.path.join(HERE, "data")
+
+# ---------------------------------------------------------------- labels ----
+COARSE_LABELS = ["Clear Reply", "Ambivalent", "Clear Non-Reply"]
+FINE_LABELS = [
+    "Explicit", "Dodging", "Implicit", "General", "Deflection",
+    "Partial/half-answer", "Declining to answer", "Claims ignorance",
+    "Clarification",
+]
+# coarse <- fine hierarchy used for the consistency analysis
+FINE2COARSE = {
+    "Explicit": "Clear Reply",
+    "Dodging": "Ambivalent", "Implicit": "Ambivalent", "General": "Ambivalent",
+    "Deflection": "Ambivalent", "Partial/half-answer": "Ambivalent",
+    "Declining to answer": "Clear Non-Reply",
+    "Claims ignorance": "Clear Non-Reply",
+    "Clarification": "Clear Non-Reply",
+}
+
+QNLI_URL = ("https://raw.githubusercontent.com/nyu-mll/GLUE-baselines/master/"
+            "QNLIv2.zip")
+
+
+def load_qevasion():
+    """Return (train_df, test_df) with unified fields + both label levels."""
+    tr = pd.read_csv(os.path.join(RAW, "data_train.csv"))
+    te = pd.read_csv(os.path.join(RAW, "data_test.csv"))
+    for df in (tr, te):
+        df["text_a"] = df["question"].fillna("").astype(str)
+        df["text_b"] = df["interview_answer"].fillna("").astype(str)
+        df["label"] = df["clarity_label"].map({n: i for i, n in
+                                               enumerate(COARSE_LABELS)})
+        df["fine_label"] = df.get("evasion_label")
+        df["fine"] = df["fine_label"].map({n: i for i, n in
+                                           enumerate(FINE_LABELS)})
+        df["task"] = "QEvasion"
+    return tr, te
+
+
+def load_qnli(n_train=20000, n_dev=3000):
+    """Load GLUE QNLI from the HuggingFace hub, subsample to keep the
+    experiment reproducible on a laptop GPU, and emit the same unified
+    schema."""
+    from datasets import load_dataset
+    ds = load_dataset("nyu-mll/glue", "qnli")
+    tr = ds["train"].to_pandas().sample(n=min(n_train, len(ds["train"])),
+                                        random_state=SEED).reset_index(drop=True)
+    dev = ds["validation"].to_pandas().sample(n=min(n_dev, len(ds["validation"])),
+                                              random_state=SEED).reset_index(drop=True)
+    name2id = {"entailment": 1, "not_entailment": 0}
+    id2name = {0: "not_entailment", 1: "entailment"}
+    for df in (tr, dev):
+        df["text_a"] = df["question"].astype(str)
+        df["text_b"] = df["sentence"].astype(str)
+        df["label"] = df["label"].map(lambda v: name2id[id2name[v]])
+        df["fine"] = -1
+        df["task"] = "QNLI"
+    return tr, dev
+
+
+def main():
+    os.makedirs(OUT, exist_ok=True)
+    tr, te = load_qevasion()
+    keep = ["text_a", "text_b", "label", "fine", "task", "clarity_label",
+            "evasion_label", "url", "president"]
+    tr[keep].to_csv(os.path.join(OUT, "qev_train.csv"), index=False)
+    te[keep].to_csv(os.path.join(OUT, "qev_test.csv"), index=False)
+
+    qtr, qdev = load_qnli()
+    qkeep = ["text_a", "text_b", "label", "fine", "task"]
+    qtr[qkeep].to_csv(os.path.join(OUT, "qnli_train.csv"), index=False)
+    qdev[qkeep].to_csv(os.path.join(OUT, "qnli_dev.csv"), index=False)
+
+    # source-leakage check between QEvasion train and test
+    leak = set(tr["url"].dropna()) & set(te["url"].dropna())
+    stats = {
+        "qev_train": len(tr), "qev_test": len(te),
+        "qnli_train_used": len(qtr), "qnli_dev_used": len(qdev),
+        "leaked_urls_between_train_test": int(len(leak)),
+        "leaked_rows_in_test": int(te["url"].isin(leak).sum()),
+        "hierarchy_check": {f: FINE2COARSE[f] for f in FINE_LABELS},
+    }
+    Path(os.path.join(OUT, "dataset_stats.json")).write_text(
+        json.dumps(stats, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(json.dumps(stats, ensure_ascii=False, indent=2))
+
+
+if __name__ == "__main__":
+    main()

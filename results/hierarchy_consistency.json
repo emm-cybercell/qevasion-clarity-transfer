@@ -1,0 +1,46 @@
+{
+  "hierarchy_macro_consistency_dev": 0.5188,
+  "two_model_agreement_test": 0.3539,
+  "top_conflict_pairs_fine_pred_vs_coarse_pred": [
+    {
+      "fine_pred": "Explicit",
+      "coarse_pred": "Ambivalent",
+      "count": 142
+    },
+    {
+      "fine_pred": "Dodging",
+      "coarse_pred": "Ambivalent",
+      "count": 49
+    },
+    {
+      "fine_pred": "Explicit",
+      "coarse_pred": "Clear Reply",
+      "count": 27
+    },
+    {
+      "fine_pred": "Implicit",
+      "coarse_pred": "Ambivalent",
+      "count": 18
+    },
+    {
+      "fine_pred": "Declining to answer",
+      "coarse_pred": "Ambivalent",
+      "count": 11
+    },
+    {
+      "fine_pred": "Explicit",
+      "coarse_pred": "Clear Non-Reply",
+      "count": 10
+    },
+    {
+      "fine_pred": "General",
+      "coarse_pred": "Ambivalent",
+      "count": 9
+    },
+    {
+      "fine_pred": "Claims ignorance",
+      "coarse_pred": "Ambivalent",
+      "count": 9
+    }
+  ]
+}

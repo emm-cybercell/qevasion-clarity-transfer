@@ -1,0 +1,56 @@
+{
+  "accuracy": 0.7143,
+  "macro_f1": 0.5559,
+  "per_class": {
+    "Clear Reply": {
+      "precision": 0.6304,
+      "recall": 0.3671,
+      "f1": 0.464,
+      "support": 79
+    },
+    "Ambivalent": {
+      "precision": 0.75,
+      "recall": 0.8883,
+      "f1": 0.8133,
+      "support": 206
+    },
+    "Clear Non-Reply": {
+      "precision": 0.4444,
+      "recall": 0.3478,
+      "f1": 0.3902,
+      "support": 23
+    }
+  },
+  "confusion_matrix": [
+    [
+      29,
+      47,
+      3
+    ],
+    [
+      16,
+      183,
+      7
+    ],
+    [
+      1,
+      14,
+      8
+    ]
+  ],
+  "train_seconds": 267.0,
+  "config": {
+    "model": "bert-base-uncased",
+    "max_len": 384,
+    "epochs": 4,
+    "batch_size": 16,
+    "lr": 2e-05,
+    "warmup_ratio": 0.1,
+    "optimizer": "AdamW(wd=0.01)",
+    "seed": 42,
+    "train_size": 3448,
+    "test_size": 308,
+    "label_col": "label",
+    "run_name": "bert_qev_coarse"
+  }
+}

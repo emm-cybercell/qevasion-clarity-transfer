@@ -1,0 +1,19 @@
+{
+  "qev_train": 3448,
+  "qev_test": 308,
+  "qnli_train_used": 20000,
+  "qnli_dev_used": 3000,
+  "leaked_urls_between_train_test": 39,
+  "leaked_rows_in_test": 118,
+  "hierarchy_check": {
+    "Explicit": "Clear Reply",
+    "Dodging": "Ambivalent",
+    "Implicit": "Ambivalent",
+    "General": "Ambivalent",
+    "Deflection": "Ambivalent",
+    "Partial/half-answer": "Ambivalent",
+    "Declining to answer": "Clear Non-Reply",
+    "Claims ignorance": "Clear Non-Reply",
+    "Clarification": "Clear Non-Reply"
+  }
+}
